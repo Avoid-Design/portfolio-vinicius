@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fashion Project Case"
+  short_description: "Estruturação de cases técnicos têxteis"
+  default_prompt: "Use $fashion-project-case para estruturar este projeto de bordado."

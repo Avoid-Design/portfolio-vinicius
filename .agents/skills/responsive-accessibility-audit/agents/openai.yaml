@@ -1,0 +1,4 @@
+interface:
+  display_name: "Responsive Accessibility Audit"
+  short_description: "Auditoria responsiva e de acessibilidade"
+  default_prompt: "Use $responsive-accessibility-audit para auditar esta página antes da release."

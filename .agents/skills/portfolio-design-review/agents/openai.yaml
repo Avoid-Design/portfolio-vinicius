@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Design Review"
+  short_description: "Revisão visual, UX e contratação do portfólio"
+  default_prompt: "Use $portfolio-design-review para revisar visualmente a home do portfólio."

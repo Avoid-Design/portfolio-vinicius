@@ -1,0 +1,4 @@
+interface:
+  display_name: "Final Portfolio Review"
+  short_description: "Revisão multidisciplinar final do portfólio"
+  default_prompt: "Use $final-portfolio-review para revisar o portfólio antes da release."

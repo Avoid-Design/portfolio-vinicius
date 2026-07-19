@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Content Entry"
+  short_description: "Cadastro íntegro de projetos no portfólio"
+  default_prompt: "Use $project-content-entry para adicionar este projeto ao portfólio."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Pages Release"
+  short_description: "Preparação segura de release no GitHub Pages"
+  default_prompt: "Use $github-pages-release para preparar e validar esta versão para publicação."
