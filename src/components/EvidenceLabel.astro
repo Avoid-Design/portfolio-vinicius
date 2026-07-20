@@ -1,0 +1,11 @@
+---
+import { evidenceLabels } from '../data/project-taxonomy';
+
+interface Props {
+  type: keyof typeof evidenceLabels;
+}
+
+const { type } = Astro.props;
+---
+
+<span class="evidence-label">Evidência: {evidenceLabels[type]}</span>

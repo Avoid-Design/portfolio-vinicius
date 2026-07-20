@@ -1,0 +1,43 @@
+---
+import { PUBLIC_SITE_URL, site } from '../config/site';
+import { withBase } from '../utils/urls';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  robots?: 'index,follow' | 'noindex,follow';
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  canonicalPath = '',
+  robots = 'index,follow',
+  type = 'website',
+  jsonLd,
+} = Astro.props;
+
+const canonical = new URL(canonicalPath.replace(/^\/+/, ''), PUBLIC_SITE_URL).toString();
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonical} />
+<link rel="icon" href={withBase('assets/favicon.svg')} type="image/svg+xml" />
+<link rel="sitemap" href={withBase('sitemap-index.xml')} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:site_name" content={`${site.name} — Portfólio`} />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+{jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

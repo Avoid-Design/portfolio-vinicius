@@ -1,0 +1,118 @@
+---
+import type { ProjectEntry } from '../utils/projects';
+import { categories } from '../data/project-taxonomy';
+import ProjectFolderCard from './ProjectFolderCard.astro';
+
+interface Props {
+  projects: ProjectEntry[];
+}
+
+const { projects } = Astro.props;
+const counts = new Map<string, number>();
+for (const category of categories) {
+  counts.set(
+    category.key,
+    category.key === 'todos'
+      ? projects.length
+      : projects.filter(({ data }) => data.category === category.key).length,
+  );
+}
+---
+
+<section id="biblioteca" class="project-library section-anchor" aria-labelledby="library-title" data-project-library>
+  <div class="section-heading section-heading--display">
+    <p class="eyebrow">Biblioteca / 04</p>
+    <h2 id="library-title">Projetos</h2>
+    <p>Filtre por técnica. Cada item possui uma página própria e permanece acessível sem JavaScript.</p>
+  </div>
+
+  <div class="filter-controls" hidden data-filter-controls>
+    <p id="filter-label">Filtrar projetos</p>
+    <div class="filter-list" role="group" aria-labelledby="filter-label">
+      {categories.map(({ key, label }) => (
+        <button type="button" data-filter={key} aria-pressed={key === 'todos' ? 'true' : 'false'}>
+          <span>{label}</span>
+          <span aria-hidden="true">{counts.get(key)}</span>
+        </button>
+      ))}
+    </div>
+    <p class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-filter-status></p>
+  </div>
+
+  <noscript><p class="asset-note">Todos os projetos estão visíveis. Os filtros exigem JavaScript.</p></noscript>
+
+  <ul class="project-grid" data-project-list>
+    {projects.map((project) => (
+      <li data-project-category={project.data.category}>
+        <ProjectFolderCard project={project} />
+      </li>
+    ))}
+  </ul>
+</section>
+
+<script>
+  const validFilters = new Set([
+    'todos',
+    'modelos-tecnicos',
+    'bordado',
+    'dtf',
+    'silk',
+    'sublimacao',
+  ]);
+
+  for (const library of document.querySelectorAll<HTMLElement>('[data-project-library]')) {
+    const controls = library.querySelector<HTMLElement>('[data-filter-controls]');
+    const buttons = [...library.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    const projects = [...library.querySelectorAll<HTMLElement>('[data-project-category]')];
+    const status = library.querySelector<HTMLElement>('[data-filter-status]');
+
+    if (!controls || !status) continue;
+    controls.hidden = false;
+
+    const applyFilter = (requested: string | null, updateHistory: boolean, announce = true) => {
+      const filter = requested && validFilters.has(requested) ? requested : 'todos';
+      let visibleCount = 0;
+
+      for (const project of projects) {
+        const visible = filter === 'todos' || project.dataset.projectCategory === filter;
+        project.hidden = !visible;
+        if (visible) visibleCount += 1;
+      }
+
+      for (const button of buttons) {
+        button.setAttribute('aria-pressed', String(button.dataset.filter === filter));
+      }
+
+      const activeLabel =
+        buttons.find((button) => button.dataset.filter === filter)?.querySelector('span')?.textContent?.trim() ??
+        'Todos';
+      if (announce) {
+        status.textContent = `${visibleCount} ${visibleCount === 1 ? 'projeto exibido' : 'projetos exibidos'} em ${activeLabel}.`;
+      }
+
+      if (updateHistory) {
+        const url = new URL(window.location.href);
+        if (filter === 'todos') url.searchParams.delete('categoria');
+        else url.searchParams.set('categoria', filter);
+        window.history.pushState({ category: filter }, '', url);
+      }
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => applyFilter(button.dataset.filter ?? 'todos', true));
+    });
+
+    window.addEventListener('popstate', () => {
+      applyFilter(new URL(window.location.href).searchParams.get('categoria'), false);
+    });
+
+    const initialUrl = new URL(window.location.href);
+    const initialFilter = initialUrl.searchParams.get('categoria');
+    applyFilter(initialFilter, false, false);
+
+    if (initialFilter && !validFilters.has(initialFilter)) {
+      initialUrl.searchParams.delete('categoria');
+      window.history.replaceState({ category: 'todos' }, '', initialUrl);
+    }
+  }
+</script>

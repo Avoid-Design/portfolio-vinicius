@@ -1,0 +1,24 @@
+---
+import type { ProjectEntry } from '../utils/projects';
+import FeaturedProjectCard from './FeaturedProjectCard.astro';
+
+interface Props {
+  projects: ProjectEntry[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section id="projetos" class="featured-projects section-anchor" aria-labelledby="featured-title">
+  <div class="section-heading section-heading--display">
+    <p class="eyebrow">Seleção / 01</p>
+    <h2 id="featured-title">Projetos em destaque</h2>
+    <p>Três estruturas demonstrativas mostram como os cases reais serão organizados.</p>
+  </div>
+  <ul class="featured-project-list">
+    {projects.map((project, index) => (
+      <li><FeaturedProjectCard project={project} index={index} priority={index === 0} /></li>
+    ))}
+  </ul>
+  <a class="text-link section-next-link" href="#biblioteca">Ver todos os projetos</a>
+</section>

@@ -1,0 +1,10 @@
+---
+import { skills } from '../data/skills';
+---
+
+<div class="profile-subsection">
+  <h3>Habilidades</h3>
+  <ul class="tag-list">
+    {skills.map((skill) => <li>{skill}</li>)}
+  </ul>
+</div>

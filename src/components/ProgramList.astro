@@ -1,0 +1,19 @@
+---
+import { programs } from '../data/programs';
+---
+
+<div class="profile-subsection">
+  <h3>Programas</h3>
+  <ul class="program-list">
+    {programs.map((program) => (
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="3" y="4" width="26" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2" />
+          <path d="M4 10h24M9 7h1M13 7h1" stroke="currentColor" stroke-width="2" />
+        </svg>
+        <span>{program}</span>
+      </li>
+    ))}
+  </ul>
+  <p class="asset-note">Ícones oficiais pendentes; símbolos genéricos nesta versão.</p>
+</div>

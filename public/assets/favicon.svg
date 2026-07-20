@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Favicon provisório do portfólio</title>
+  <rect width="64" height="64" rx="8" fill="#f4f3ef"/>
+  <path d="M8 20h20l6 7h22v29H8z" fill="none" stroke="#1f1f1d" stroke-width="4"/>
+  <path d="M18 38h28M18 46h20" stroke="#1f1f1d" stroke-width="3"/>
+</svg>

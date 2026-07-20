@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+import AiDisclosure from '../components/AiDisclosure.astro';
+import ContactFooter from '../components/ContactFooter.astro';
+import EvidenceLabel from '../components/EvidenceLabel.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import { categoryLabels } from '../data/project-taxonomy';
+import type { ProjectEntry } from '../utils/projects';
+import { homeAnchor, projectUrl } from '../utils/urls';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  project: ProjectEntry;
+  previous?: ProjectEntry;
+  next?: ProjectEntry;
+}
+
+const { project, previous, next } = Astro.props;
+const { data } = project;
+---
+
+<BaseLayout
+  title={`${data.title} — Projeto demonstrativo | Vinicius Rafael`}
+  description={`${data.summary} Conteúdo demonstrativo, sem cliente ou resultado físico associado.`}
+  canonicalPath={`projetos/${data.slug}/`}
+  robots="noindex,follow"
+  type="article"
+>
+  <main id="conteudo-principal" class="case-main" tabindex="-1">
+    <header class="case-header">
+      <a class="back-link" href={homeAnchor('projetos')}>← Voltar aos projetos</a>
+      <p class="eyebrow">Arquivo {String(data.order).padStart(2, '0')} / {categoryLabels[data.category]}</p>
+      <h1>{data.title}</h1>
+      <p class="case-summary">{data.summary}</p>
+      <p class="demo-notice demo-notice--large">{data.demonstrativeNotice}</p>
+      <dl class="case-meta">
+        <div><dt>Categoria</dt><dd>{categoryLabels[data.category]}</dd></div>
+        <div><dt>Ano</dt><dd>{data.year}</dd></div>
+        <div><dt>Identificação</dt><dd>{data.clientLabel}</dd></div>
+        <div><dt>Segmento</dt><dd>{data.segment}</dd></div>
+      </dl>
+    </header>
+
+    <figure class="case-cover">
+      <Image src={data.cover.asset} alt={data.cover.alt} loading="eager" fetchpriority="high" />
+      <figcaption>
+        <EvidenceLabel type={data.cover.evidenceType} />
+        {data.cover.disclosure && <AiDisclosure text={data.cover.disclosure} />}
+      </figcaption>
+    </figure>
+
+    <div class="case-content">
+      <section aria-labelledby="context-title">
+        <p class="eyebrow">01 / Contexto</p>
+        <h2 id="context-title">Contexto</h2>
+        <p>{data.context}</p>
+      </section>
+
+      <section aria-labelledby="participation-title">
+        <p class="eyebrow">02 / Autoria</p>
+        <h2 id="participation-title">Minha participação</h2>
+        <ul>
+          {data.responsibilities.map((responsibility) => <li>{responsibility}</li>)}
+        </ul>
+        <p class="brand-disclaimer">{data.brandDisclaimer}</p>
+      </section>
+
+      <section class="case-tools" aria-labelledby="tools-title">
+        <p class="eyebrow">03 / Recursos</p>
+        <h2 id="tools-title">Ferramentas e técnicas</h2>
+        <div>
+          <div>
+            <h3>Ferramentas</h3>
+            <ul>{data.tools.map((tool) => <li>{tool}</li>)}</ul>
+          </div>
+          <div>
+            <h3>Técnicas</h3>
+            <ul>{data.techniques.map((technique) => <li>{technique}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-process" aria-labelledby="process-title">
+        <p class="eyebrow">04 / Processo</p>
+        <h2 id="process-title">Processo</h2>
+        <ProcessSteps stages={data.stages} />
+      </section>
+
+      <section aria-labelledby="result-title">
+        <p class="eyebrow">05 / Resultado</p>
+        <h2 id="result-title">Estado atual</h2>
+        <p>{data.result}</p>
+      </section>
+    </div>
+
+    <nav class="project-pagination" aria-label="Navegação entre projetos">
+      {previous ? (
+        <a href={projectUrl(previous.data.slug)}>
+          <span>Projeto anterior</span>
+          <strong>{previous.data.title}</strong>
+        </a>
+      ) : <span></span>}
+      {next ? (
+        <a href={projectUrl(next.data.slug)}>
+          <span>Próximo projeto</span>
+          <strong>{next.data.title}</strong>
+        </a>
+      ) : <span></span>}
+    </nav>
+  </main>
+  <ContactFooter />
+</BaseLayout>

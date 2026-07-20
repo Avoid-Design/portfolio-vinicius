@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import type { ProjectEntry } from '../utils/projects';
+import { categoryLabels } from '../data/project-taxonomy';
+import { projectUrl } from '../utils/urls';
+import AiDisclosure from './AiDisclosure.astro';
+import EvidenceLabel from './EvidenceLabel.astro';
+
+interface Props {
+  project: ProjectEntry;
+  priority?: boolean;
+}
+
+const { project, priority = false } = Astro.props;
+const { data } = project;
+---
+
+<article class="project-folder-card">
+  <a href={projectUrl(data.slug)} aria-label={`Abrir projeto: ${data.title}`}>
+    <span class="folder-tab" aria-hidden="true"></span>
+    <div class="project-preview">
+      <Image
+        src={data.cover.asset}
+        alt={data.cover.alt}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchpriority={priority ? 'high' : 'auto'}
+      />
+    </div>
+    <div class="project-card-content">
+      <p class="project-index">Arquivo {String(data.order).padStart(2, '0')}</p>
+      <h3>{data.title}</h3>
+      <p class="project-card-summary">{data.summary}</p>
+      <dl class="project-meta">
+        <div><dt>Categoria</dt><dd>{categoryLabels[data.category]}</dd></div>
+        <div><dt>Ano</dt><dd>{data.year}</dd></div>
+      </dl>
+      <EvidenceLabel type={data.evidenceType} />
+      {data.cover.disclosure && <AiDisclosure text={data.cover.disclosure} />}
+      <p class="demo-notice">{data.demonstrativeNotice}</p>
+      <span class="open-project">Abrir projeto <span aria-hidden="true">↗</span></span>
+    </div>
+  </a>
+</article>

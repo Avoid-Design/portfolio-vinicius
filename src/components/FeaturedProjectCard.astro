@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import { categoryLabels } from '../data/project-taxonomy';
+import type { ProjectEntry } from '../utils/projects';
+import { projectUrl } from '../utils/urls';
+import EvidenceLabel from './EvidenceLabel.astro';
+
+interface Props {
+  project: ProjectEntry;
+  index: number;
+  priority?: boolean;
+}
+
+const { project, index, priority = false } = Astro.props;
+const { data } = project;
+---
+
+<article class="featured-project-card">
+  <a href={projectUrl(data.slug)} aria-label={`Abrir projeto em destaque: ${data.title}`}>
+    <div class="featured-project-preview">
+      <Image
+        src={data.cover.asset}
+        alt={data.cover.alt}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchpriority={priority ? 'high' : 'auto'}
+      />
+    </div>
+    <div class="featured-project-copy">
+      <p class="eyebrow">Destaque {String(index + 1).padStart(2, '0')} / {categoryLabels[data.category]}</p>
+      <h3>{data.title}</h3>
+      <p>{data.summary}</p>
+      <EvidenceLabel type={data.evidenceType} />
+      <p class="demo-notice">{data.demonstrativeNotice}</p>
+      <span class="open-project">Ver case <span aria-hidden="true">↗</span></span>
+    </div>
+  </a>
+</article>

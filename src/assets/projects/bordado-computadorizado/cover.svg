@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder de bordado computadorizado</title>
+  <desc id="desc">Diagrama neutro de bastidor com linhas cruzadas, sem marca.</desc>
+  <rect width="1200" height="800" fill="#f1f0ec"/>
+  <circle cx="600" cy="370" r="255" fill="none" stroke="#242422" stroke-width="14"/>
+  <circle cx="600" cy="370" r="225" fill="none" stroke="#77756e" stroke-width="5" stroke-dasharray="12 14"/>
+  <g stroke="#242422" stroke-width="6" opacity=".88">
+    <path d="m430 250 340 240M410 330l350 230M455 180l330 240M420 510l350-260M455 570l330-250"/>
+  </g>
+  <text x="600" y="735" fill="#242422" font-family="monospace" font-size="28" text-anchor="middle">PLACEHOLDER DEMONSTRATIVO</text>
+</svg>

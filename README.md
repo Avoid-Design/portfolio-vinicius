@@ -1,8 +1,54 @@
 # Portfólio de Vinicius Rafael
 
-Infraestrutura inicial de colaboração com Codex para o portfólio profissional de Vinicius Rafael — Designer Gráfico, Arte-finalista e profissional de Desenvolvimento Técnico Têxtil.
+Protótipo funcional do portfólio profissional de Vinicius Rafael — Designer Gráfico, Arte-finalista e profissional de Desenvolvimento Técnico Têxtil.
 
-Esta etapa configura apenas instruções, agentes especializados e skills reutilizáveis. O site completo ainda não foi implementado.
+O projeto usa Astro, TypeScript estrito, HTML semântico, CSS próprio e JavaScript progressivo. A versão atual contém cinco cases demonstrativos claramente identificados; eles não representam clientes, marcas ou produções reais.
+
+## Executar localmente
+
+Requisito: Node.js 24.
+
+```bash
+npm install
+npm run dev
+```
+
+URL local: `http://localhost:4321/portfolio-vinicius/`.
+
+O primeiro `npm install` gera `package-lock.json`, que deve ser versionado para permitir `npm ci` no workflow.
+
+## Verificações
+
+```bash
+npm run typecheck
+npm run build
+npm run test:dist
+npx playwright install chromium
+npm test
+```
+
+`npm test` inicia o preview do build existente. Execute o build antes dos testes de navegador. Não há linter configurado nesta versão; `astro check` é o typecheck real, não um lint nominal.
+
+## Arquitetura e conteúdo
+
+- `src/content/projects/`: cinco entradas da Content Collection.
+- `src/content.config.ts`: schema, enums e validações de integridade.
+- `src/config/site.ts`: perfil, SEO e canais profissionais.
+- `src/data/`: experiência, programas, habilidades e taxonomia.
+- `src/components/`: seções e unidades reutilizáveis.
+- `src/pages/projetos/[slug].astro`: rotas estáticas dos cases.
+- `CONTENT_GUIDE.md`: procedimento para substituir demonstrativos por conteúdo real.
+- `docs/ARCHITECTURE.md`: decisões técnicas consolidadas.
+
+## GitHub Pages
+
+O site foi configurado para:
+
+`https://avoid-design.github.io/portfolio-vinicius/`
+
+O workflow `.github/workflows/deploy-pages.yml` executa em push para `main` ou manualmente, instala pelo lockfile, roda typecheck, build, inspeção do `dist` e Playwright antes do deploy. O repositório deve usar **GitHub Actions** como fonte do Pages.
+
+O workflow não faz merge. Trabalhe em branch, revise o pull request e mantenha a decisão de publicação com a equipe.
 
 ## Como o AGENTS.md funciona
 

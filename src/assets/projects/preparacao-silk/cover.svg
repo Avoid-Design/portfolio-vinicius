@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder de preparação para silk</title>
+  <desc id="desc">Três quadros neutros sobrepostos representando separação de cores.</desc>
+  <rect width="1200" height="800" fill="#f1f0ec"/>
+  <g fill="none" stroke="#242422" stroke-width="8">
+    <rect x="265" y="150" width="470" height="390" rx="16"/>
+    <rect x="365" y="205" width="470" height="390" rx="16"/>
+    <rect x="465" y="260" width="470" height="390" rx="16"/>
+  </g>
+  <g fill="#242422">
+    <circle cx="500" cy="345" r="55"/><circle cx="600" cy="430" r="55"/><circle cx="700" cy="515" r="55"/>
+  </g>
+  <text x="600" y="735" fill="#242422" font-family="monospace" font-size="28" text-anchor="middle">PLACEHOLDER DEMONSTRATIVO</text>
+</svg>

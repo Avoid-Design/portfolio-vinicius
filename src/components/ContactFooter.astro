@@ -1,0 +1,24 @@
+---
+import { contacts, site } from '../config/site';
+---
+
+<footer id="contato" class="contact-footer section-anchor" aria-labelledby="contact-title">
+  <div>
+    <p class="eyebrow">Contato / 06</p>
+    <h2 id="contact-title">Vamos transformar informação em produção.</h2>
+    <p>{site.availability}</p>
+  </div>
+  <ul class="contact-list">
+    {contacts.map((contact) => (
+      <li>
+        <span>{contact.label}</span>
+        {contact.status === 'configured' && contact.href ? (
+          <a href={contact.href}>{contact.value}</a>
+        ) : (
+          <strong>{contact.value}</strong>
+        )}
+      </li>
+    ))}
+  </ul>
+  <p class="footer-note">Portfólio em protótipo · Base visual neutra e provisória.</p>
+</footer>

@@ -1,0 +1,50 @@
+---
+import SeoHead from '../components/SeoHead.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SkipLink from '../components/SkipLink.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  robots?: 'index,follow' | 'noindex,follow';
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>;
+}
+
+const props = Astro.props;
+const isHome = Astro.url.pathname === import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f4f3ef" />
+    <SeoHead {...props} />
+    {isHome && (
+      <script is:inline>
+        (() => {
+          try {
+            if (
+              !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+              !window.sessionStorage.getItem('vr-logo-intro:v1')
+            ) {
+              window.sessionStorage.setItem('vr-logo-intro:v1', 'played');
+              document.documentElement.dataset.logoIntro = 'play';
+            }
+          } catch {
+            // O estado final permanece visível se o armazenamento estiver indisponível.
+          }
+        })();
+      </script>
+    )}
+  </head>
+  <body>
+    <SkipLink />
+    <SiteHeader />
+    <slot />
+  </body>
+</html>

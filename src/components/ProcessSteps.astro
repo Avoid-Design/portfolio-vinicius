@@ -1,0 +1,21 @@
+---
+import type { ProjectEntry } from '../utils/projects';
+
+interface Props {
+  stages: ProjectEntry['data']['stages'];
+}
+
+const { stages } = Astro.props;
+---
+
+<ol class="process-steps">
+  {stages.map((stage, index) => (
+    <li>
+      <span class="process-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+      <div>
+        <h3>{stage.title}</h3>
+        <p>{stage.description}</p>
+      </div>
+    </li>
+  ))}
+</ol>

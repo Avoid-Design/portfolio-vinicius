@@ -1,0 +1,45 @@
+---
+import BrandContext from '../components/BrandContext.astro';
+import ContactFooter from '../components/ContactFooter.astro';
+import ExperienceSection from '../components/ExperienceSection.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import Opening from '../components/Opening.astro';
+import ProfessionalFile from '../components/ProfessionalFile.astro';
+import ProjectFilters from '../components/ProjectFilters.astro';
+import { PUBLIC_SITE_URL, contacts, site } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPublishedProjects } from '../utils/projects';
+
+const projects = await getPublishedProjects();
+const featured = projects.filter(({ data }) => data.featured);
+const sameAs = contacts
+  .filter((contact) => contact.status === 'configured' && contact.href)
+  .map((contact) => contact.href as string);
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: PUBLIC_SITE_URL,
+  jobTitle: site.role,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bauru',
+    addressRegion: 'SP',
+    addressCountry: 'BR',
+  },
+  ...(sameAs.length > 0 ? { sameAs } : {}),
+};
+---
+
+<BaseLayout canonicalPath="" jsonLd={personJsonLd}>
+  <main id="conteudo-principal" tabindex="-1">
+    <Opening />
+    <FeaturedProjects projects={featured} />
+    <ProfessionalFile />
+    <ExperienceSection />
+    <ProjectFilters projects={projects} />
+    <BrandContext />
+  </main>
+  <ContactFooter />
+</BaseLayout>
