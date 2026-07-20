@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder de modelo técnico de uniforme</title>
+  <desc id="desc">Diagrama neutro com frente e costas de uma camiseta, sem marca.</desc>
+  <rect width="1200" height="800" fill="#f1f0ec"/>
+  <g fill="none" stroke="#242422" stroke-width="8">
+    <path d="M170 245 310 165h160l140 80-70 135-70-40v300H310V340l-70 40z"/>
+    <path d="M650 245 790 165h160l140 80-70 135-70-40v300H790V340l-70 40z"/>
+    <path d="M345 170q45 75 90 0M825 170q45 55 90 0"/>
+  </g>
+  <g fill="#242422" font-family="monospace" font-size="28">
+    <text x="390" y="700" text-anchor="middle">FRENTE</text>
+    <text x="870" y="700" text-anchor="middle">COSTAS</text>
+    <text x="600" y="760" text-anchor="middle">PLACEHOLDER DEMONSTRATIVO</text>
+  </g>
+</svg>
+

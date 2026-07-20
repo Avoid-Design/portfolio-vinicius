@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /portfolio-vinicius/
+
+Sitemap: https://avoid-design.github.io/portfolio-vinicius/sitemap-index.xml
+

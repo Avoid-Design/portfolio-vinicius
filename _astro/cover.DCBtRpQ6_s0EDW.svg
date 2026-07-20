@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder de preparação DTF</title>
+  <desc id="desc">Folha neutra com formas organizadas para impressão, sem marca.</desc>
+  <rect width="1200" height="800" fill="#f1f0ec"/>
+  <rect x="265" y="90" width="670" height="580" rx="18" fill="#fff" stroke="#242422" stroke-width="8"/>
+  <g fill="none" stroke="#242422" stroke-width="6">
+    <circle cx="420" cy="265" r="74"/><circle cx="600" cy="265" r="74"/><circle cx="780" cy="265" r="74"/>
+    <rect x="345" y="390" width="150" height="150" rx="18"/><rect x="525" y="390" width="150" height="150" rx="18"/><rect x="705" y="390" width="150" height="150" rx="18"/>
+  </g>
+  <path d="M245 125h40M245 635h40M915 125h40M915 635h40" stroke="#77756e" stroke-width="8"/>
+  <text x="600" y="735" fill="#242422" font-family="monospace" font-size="28" text-anchor="middle">PLACEHOLDER DEMONSTRATIVO</text>
+</svg>
+
