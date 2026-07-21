@@ -32,8 +32,7 @@ export const contacts: ContactChannel[] = [
 ];
 
 export const navigation = [
-  { label: 'Início', id: 'inicio' },
-  { label: 'Sobre e experiência', id: 'sobre' },
+  { label: 'Home', id: 'inicio' },
+  { label: 'Sobre', id: 'sobre' },
   { label: 'Projetos', id: 'projetos' },
-  { label: 'Contato', id: 'contato' },
 ] as const;

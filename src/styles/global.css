@@ -392,17 +392,11 @@ main > section,
 }
 
 .projects-section {
-  padding-block: var(--space-6);
-  border-block-start: var(--line-thin) solid var(--color-line);
+  padding-block: var(--space-3) var(--space-6);
 }
 
-.featured-projects,
 .project-library {
-  padding-block: var(--space-5);
-}
-
-.featured-projects + .project-library {
-  border-block-start: var(--line-thin) solid var(--color-line);
+  padding-block: 0;
 }
 
 .professional-card {

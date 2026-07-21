@@ -40,7 +40,7 @@ test('menu aberto não oculta o próximo foco', async ({ page }) => {
   await menu.focus();
   await page.keyboard.press('Enter');
 
-  for (let index = 0; index < 5; index += 1) await page.keyboard.press('Tab');
+  for (let index = 0; index < 4; index += 1) await page.keyboard.press('Tab');
 
   const focusGeometry = await page.evaluate(() => {
     const active = document.activeElement?.getBoundingClientRect();
@@ -64,7 +64,7 @@ test('navegação sem JavaScript não encobre o foco em viewport baixa', async (
   await summary.focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('[data-site-menu]')).toHaveAttribute('open', '');
-  for (let index = 0; index < 5; index += 1) await page.keyboard.press('Tab');
+  for (let index = 0; index < 4; index += 1) await page.keyboard.press('Tab');
 
   const focusGeometry = await page.evaluate(() => {
     const active = document.activeElement?.getBoundingClientRect();

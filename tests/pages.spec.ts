@@ -15,7 +15,7 @@ test('home possui estrutura semântica e conteúdo central', async ({ page }) =>
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.getByRole('heading', { level: 1, name: 'Vinicius Rafael' })).toBeVisible();
   await expect(page.locator('main#conteudo-principal')).toBeVisible();
-  await expect(page.locator('[data-home-block]')).toHaveCount(4);
+  await expect(page.locator('[data-home-block]')).toHaveCount(3);
   await expect(page.locator('.site-signature')).toHaveCount(0);
   await expect(page.locator('[data-site-header] [data-menu-summary] img')).toHaveCount(1);
   await expect(page.locator('[data-menu-summary]')).toHaveText('');
@@ -23,9 +23,13 @@ test('home possui estrutura semântica e conteúdo central', async ({ page }) =>
   await expect(page.locator('[data-site-menu]')).not.toHaveAttribute('open', '');
   await page.locator('[data-menu-summary]').click();
   await expect(page.getByRole('navigation', { name: 'Navegação principal' })).toBeVisible();
-  await expect(page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('link')).toHaveCount(4);
-  await expect(page.getByRole('contentinfo')).toBeVisible();
+  const menuLinks = page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('link');
+  await expect(menuLinks).toHaveCount(3);
+  await expect(menuLinks).toHaveText(['Home', 'Sobre', 'Projetos']);
+  await expect(page.getByRole('contentinfo')).toHaveCount(0);
   await expect(page.locator('[data-project-list] > li')).toHaveCount(5);
+  await expect(page.locator('#projetos > .section-heading')).toHaveCount(0);
+  await expect(page.locator('.featured-projects')).toHaveCount(0);
 });
 
 test('abertura usa a capa original e mantém a frase em uma linha', async ({ page }) => {
