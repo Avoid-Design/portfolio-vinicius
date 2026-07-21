@@ -24,8 +24,10 @@ export const brandAssets = {
     height: 743,
   },
   support: {
-    label: 'Logo de apoio',
-    status: 'pending',
+    label: 'Logo de apoio de Vinicius Rafael',
+    status: 'configured',
     src: withBase('assets/logos/logo-apoio.png'),
+    width: 312,
+    height: 286,
   },
 } as const satisfies Record<string, BrandAsset>;

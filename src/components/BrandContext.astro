@@ -1,11 +1,29 @@
+---
+import { brandAssets } from '../config/brand';
+
+const placeholders = Array.from({ length: 11 });
+---
+
 <section class="brand-context" aria-labelledby="brands-title">
-  <div class="subsection-heading">
-    <p class="eyebrow">Contexto profissional</p>
-    <h3 id="brands-title">Marcas e contextos profissionais</h3>
-    <p>Projetos realizados durante minha atuação profissional por meio das empresas em que trabalhei.</p>
-  </div>
+  <p class="panel-tab-label" aria-hidden="true">Marcas:</p>
+  <h3 id="brands-title" class="sr-only">Marcas e contextos profissionais</h3>
+  <ul class="brand-placeholder-grid" aria-label="Espaços reservados para marcas autorizadas">
+    {placeholders.map(() => (
+      <li aria-hidden="true">
+        <img
+          src={brandAssets.support.src}
+          alt=""
+          width={brandAssets.support.width}
+          height={brandAssets.support.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </li>
+    ))}
+    <li class="brand-placeholder-status"><span>Pendente</span></li>
+  </ul>
   <div class="brand-pending-state">
-    <p class="eyebrow">Arquivo de marcas / pendente</p>
+    <p class="brand-pending-label">Arquivo de marcas / pendente</p>
     <strong>Logos autorizados ainda não adicionados.</strong>
     <p>A grade será publicada quando nomes, vínculos profissionais e permissões de uso estiverem confirmados.</p>
   </div>

@@ -54,6 +54,31 @@ test('abertura usa a capa original e mantém a frase em uma linha', async ({ pag
   }
 });
 
+test('card profissional segue a estrutura contínua e usa os assets fornecidos', async ({ page }) => {
+  await page.goto('./');
+
+  const section = page.locator('#sobre');
+  await expect(section.locator(':scope > .section-heading')).toHaveCount(0);
+  await expect(section.locator('#about-experience-title')).toHaveClass('sr-only');
+  await expect(section.locator(':scope > .professional-card')).toHaveCount(1);
+  await expect(section.locator('.professional-mark-image')).toHaveAttribute(
+    'src',
+    /assets\/logos\/logo-apoio\.png$/,
+  );
+  await expect(section.locator('.program-list > li')).toHaveCount(6);
+  await expect(section.locator('.program-list img')).toHaveCount(6);
+  await expect(section.locator('.brand-context')).toHaveCount(1);
+  await expect(section.locator('.brand-placeholder-grid > li')).toHaveCount(12);
+  await expect(section.getByText('+632', { exact: true })).toHaveCount(0);
+  await expect(page.locator('#projetos .brand-context')).toHaveCount(0);
+
+  for (const width of [360, 390, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    const fitsWidth = await section.evaluate((element) => element.scrollWidth <= element.clientWidth);
+    expect(fitsWidth, `Card profissional extrapola em ${width}px`).toBeTruthy();
+  }
+});
+
 for (const slug of slugs) {
   test(`case ${slug} possui rota, aviso e noindex`, async ({ page }) => {
     await page.goto(`projetos/${slug}/`);

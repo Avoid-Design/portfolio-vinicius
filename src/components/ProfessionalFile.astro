@@ -5,25 +5,16 @@ import SkillTags from './SkillTags.astro';
 ---
 
 <section class="professional-file" aria-labelledby="about-title">
-  <div class="subsection-heading">
-    <p class="eyebrow">Ficha profissional</p>
-    <h3 id="about-title">Sobre mim</h3>
+  <h3 id="about-title" class="sr-only">Ficha profissional</h3>
+
+  <div class="profile-core">
+    <p class="profile-name">{site.name}</p>
+    <p class="profile-role">{site.role}</p>
+    <p class="profile-summary">{site.summary}</p>
   </div>
 
-  <div class="professional-grid">
-    <div class="profile-core">
-      <p class="profile-name">{site.name}</p>
-      <p class="profile-role">{site.role}</p>
-      <p class="profile-summary">{site.summary}</p>
-      <dl class="profile-facts">
-        <div><dt>Local</dt><dd>{site.location}</dd></div>
-        <div><dt>Formação</dt><dd>{site.education}</dd></div>
-        <div><dt>Disponibilidade</dt><dd>{site.availability}</dd></div>
-      </dl>
-    </div>
-    <div class="profile-capabilities">
-      <ProgramList />
-      <SkillTags />
-    </div>
+  <div class="profile-capabilities">
+    <ProgramList />
+    <SkillTags />
   </div>
 </section>

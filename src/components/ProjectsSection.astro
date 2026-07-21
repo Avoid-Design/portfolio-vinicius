@@ -2,7 +2,6 @@
 import type { ProjectEntry } from '../utils/projects';
 import { brandAssets } from '../config/brand';
 import BrandAsset from './BrandAsset.astro';
-import BrandContext from './BrandContext.astro';
 import FeaturedProjects from './FeaturedProjects.astro';
 import ProjectFilters from './ProjectFilters.astro';
 
@@ -30,5 +29,4 @@ const { featured, projects } = Astro.props;
   </div>
   <FeaturedProjects projects={featured} />
   <ProjectFilters projects={projects} />
-  <BrandContext />
 </section>

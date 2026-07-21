@@ -3,10 +3,8 @@ import { experience } from '../data/experience';
 ---
 
 <section class="experience" aria-labelledby="experience-title">
-  <div class="subsection-heading">
-    <p class="eyebrow">Histórico profissional</p>
-    <h3 id="experience-title">Experiência profissional</h3>
-  </div>
+  <p class="panel-tab-label" aria-hidden="true">Experiência:</p>
+  <h3 id="experience-title" class="sr-only">Experiência profissional</h3>
   <div class="experience-header">
     <div>
       <p class="experience-period">{experience.period}</p>
@@ -16,13 +14,13 @@ import { experience } from '../data/experience';
     <p>{experience.summary}</p>
   </div>
   <div class="experience-areas">
-    {experience.areas.map((area, index) => (
-      <details open={index === 0}>
-        <summary>{area.title}</summary>
+    {experience.areas.map((area) => (
+      <section class="experience-area">
+        <h4>{area.title}</h4>
         <ul>
           {area.items.map((item) => <li>{item}</li>)}
         </ul>
-      </details>
+      </section>
     ))}
   </div>
 </section>

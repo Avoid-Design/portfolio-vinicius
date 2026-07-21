@@ -3,17 +3,20 @@ import { programs } from '../data/programs';
 ---
 
 <div class="profile-subsection">
-  <h4>Programas</h4>
+  <h4 class="sr-only">Programas</h4>
   <ul class="program-list">
     {programs.map((program) => (
       <li>
-        <svg viewBox="0 0 32 32" aria-hidden="true">
-          <rect x="3" y="4" width="26" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2" />
-          <path d="M4 10h24M9 7h1M13 7h1" stroke="currentColor" stroke-width="2" />
-        </svg>
-        <span>{program}</span>
+        <img
+          src={program.icon.src}
+          alt=""
+          width={program.icon.width}
+          height={program.icon.height}
+          loading="lazy"
+          decoding="async"
+        />
+        <span>{program.name}</span>
       </li>
     ))}
   </ul>
-  <p class="asset-note">Ícones oficiais pendentes; símbolos genéricos nesta versão.</p>
 </div>
