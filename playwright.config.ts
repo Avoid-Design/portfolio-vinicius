@@ -16,6 +16,9 @@ export default defineConfig({
     command: 'npm run preview -- --host 127.0.0.1 --port 4321',
     url: baseURL,
     reuseExistingServer: !process.env.CI,
+    env: {
+      ASTRO_TELEMETRY_DISABLED: '1',
+    },
   },
   projects: [
     {

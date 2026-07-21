@@ -27,7 +27,7 @@ const { data } = project;
     </div>
     <div class="featured-project-copy">
       <p class="eyebrow">Destaque {String(index + 1).padStart(2, '0')} / {categoryLabels[data.category]}</p>
-      <h3>{data.title}</h3>
+      <h4>{data.title}</h4>
       <p>{data.summary}</p>
       <EvidenceLabel type={data.evidenceType} />
       <p class="demo-notice">{data.demonstrativeNotice}</p>

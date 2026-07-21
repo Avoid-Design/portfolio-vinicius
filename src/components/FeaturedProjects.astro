@@ -9,10 +9,10 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
-<section id="projetos" class="featured-projects section-anchor" aria-labelledby="featured-title">
-  <div class="section-heading section-heading--display">
-    <p class="eyebrow">Seleção / 01</p>
-    <h2 id="featured-title">Projetos em destaque</h2>
+<section class="featured-projects" aria-labelledby="featured-title">
+  <div class="subsection-heading">
+    <p class="eyebrow">Seleção inicial</p>
+    <h3 id="featured-title">Projetos em destaque</h3>
     <p>Três estruturas demonstrativas mostram como os cases reais serão organizados.</p>
   </div>
   <ul class="featured-project-list">
@@ -20,5 +20,5 @@ const { projects } = Astro.props;
       <li><FeaturedProjectCard project={project} index={index} priority={index === 0} /></li>
     ))}
   </ul>
-  <a class="text-link section-next-link" href="#biblioteca">Ver todos os projetos</a>
+  <a class="text-link section-next-link" href="#biblioteca">Ver biblioteca completa</a>
 </section>

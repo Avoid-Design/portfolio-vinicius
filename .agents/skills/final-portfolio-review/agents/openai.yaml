@@ -1,4 +1,4 @@
 interface:
   display_name: "Final Portfolio Review"
-  short_description: "Revisão multidisciplinar final do portfólio"
+  short_description: "Revisão final com UX/UI e Frontend"
   default_prompt: "Use $final-portfolio-review para revisar o portfólio antes da release."

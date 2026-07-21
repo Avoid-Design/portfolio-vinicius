@@ -1,0 +1,34 @@
+---
+import type { BrandAsset } from '../config/brand';
+
+interface Props {
+  asset: BrandAsset;
+  class?: string;
+  decorative?: boolean;
+  pendingText?: string;
+}
+
+const {
+  asset,
+  class: className,
+  decorative = false,
+  pendingText = 'Arquivo original pendente',
+} = Astro.props;
+---
+
+{asset.status === 'configured' ? (
+  <img
+    class={className}
+    src={asset.src}
+    alt={decorative ? '' : asset.label}
+    width={asset.width}
+    height={asset.height}
+    loading="eager"
+    decoding="async"
+  />
+) : (
+  <div class:list={[className, 'brand-asset-pending']} data-asset-status="pending">
+    <span>{asset.label}</span>
+    <small>{pendingText}</small>
+  </div>
+)}

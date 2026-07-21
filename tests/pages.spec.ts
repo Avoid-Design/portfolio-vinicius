@@ -15,7 +15,11 @@ test('home possui estrutura semântica e conteúdo central', async ({ page }) =>
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.getByRole('heading', { level: 1, name: 'Vinicius Rafael' })).toBeVisible();
   await expect(page.locator('main#conteudo-principal')).toBeVisible();
+  await expect(page.locator('[data-home-block]')).toHaveCount(4);
+  await expect(page.locator('[data-site-menu]')).not.toHaveAttribute('open', '');
+  await page.locator('[data-menu-summary]').click();
   await expect(page.getByRole('navigation', { name: 'Navegação principal' })).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('link')).toHaveCount(4);
   await expect(page.getByRole('contentinfo')).toBeVisible();
   await expect(page.locator('[data-project-list] > li')).toHaveCount(5);
 });

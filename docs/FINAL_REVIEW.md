@@ -1,6 +1,6 @@
 # Revisão final do protótipo v1
 
-Data: 19 de julho de 2026
+Data: 20 de julho de 2026
 Branch: `feat/prototipo-portfolio-v1`
 Escopo: protótipo funcional Astro, sem aprovação de identidade final nem publicação de cases reais.
 
@@ -8,18 +8,14 @@ Escopo: protótipo funcional Astro, sem aprovação de identidade final nem publ
 
 O protótipo está aprovado para commit, push da branch e revisão em pull request. Não há bloqueador técnico, visual, responsivo ou de integridade para este marco.
 
-O site ainda não deve ser apresentado como portfólio final de contratação. Faltam projetos reais autorizados, ao menos um canal de contato, currículo, logos oficiais, imagem Open Graph e configuração externa do GitHub Pages. Essas ausências permanecem explícitas e não foram substituídas por dados inventados.
+O site ainda não deve ser apresentado como portfólio final de contratação. Faltam projetos reais autorizados, ao menos um canal de contato, currículo, os arquivos originais da capa e do apoio de seções e uma imagem Open Graph. Essas ausências permanecem explícitas e não foram substituídas por dados inventados.
 
 ## Revisores consultados
 
-- Digital Design Director;
-- UX and Information Architect;
-- Technical Fashion Designer;
-- Accessibility and Responsive Reviewer;
-- Performance and SEO Reviewer;
-- Hiring Reviewer.
+- UX/UI Portfolio Designer, consolidando direção visual, jornada, contratação, responsividade e acessibilidade;
+- Frontend Portfolio Engineer, consolidando arquitetura, implementação, testes, desempenho, SEO e publicação.
 
-Design, UX e Hiring também revisaram a versão anterior às correções. Acessibilidade revalidou diretamente o bloqueador encontrado após a implementação da correção.
+As especialidades da revisão anterior foram consolidadas nesses dois papéis para reduzir custo de contexto sem remover critérios de avaliação.
 
 ## Bloqueadores
 
@@ -32,8 +28,7 @@ Design, UX e Hiring também revisaram a versão anterior às correções. Acessi
 - Substituir os cinco cases demonstrativos por trabalhos reais autorizados;
 - confirmar autoria, participação, vínculo empresarial, processo e evidências;
 - configurar ao menos um canal de contato funcional e o currículo;
-- fornecer e aprovar logos oficiais, imagens reais e imagem Open Graph;
-- configurar o repositório para publicar Pages por GitHub Actions;
+- fornecer os arquivos originais da capa e do apoio, imagens reais e imagem Open Graph;
 - integrar a branch por revisão, sem merge automático.
 
 Esses itens não bloqueiam o protótipo porque todos os estados pendentes e demonstrativos estão declarados visualmente, no conteúdo e nos metadados.
@@ -42,11 +37,12 @@ Esses itens não bloqueiam o protótipo porque todos os estados pendentes e demo
 
 - O `h1` passou a identificar Vinicius Rafael; “Portfólio técnico” funciona como contexto.
 - Projetos em destaque foram antecipados e receberam composição editorial compacta própria.
-- A ordem da jornada passou a ser abertura, destaques, ficha, experiência, biblioteca, marcas e contato.
-- O menu foi alinhado à ordem do documento e ganhou destino direto para a biblioteca completa.
+- A jornada passou a ter quatro blocos contínuos: Início; Sobre e experiência; Projetos; Contato.
+- O menu superior passou a iniciar recolhido, com quatro destinos alinhados à ordem do documento.
 - A seção de marcas deixou de simular seis logos e passou a mostrar um único estado pendente honesto.
 - Cards da biblioteca ganharam resumo para leigos e reduziram a quantidade de etiquetas.
-- Nome, função e CTAs permanecem visíveis desde o primeiro frame; somente o diagrama de logo é animado.
+- Nome, função e CTAs permanecem visíveis desde o primeiro frame; a introdução animada foi removida.
+- O logo principal oficial foi preservado e aplicado como assinatura, acionador do menu, favicon e marca de contato.
 - A legenda da capa DTF foi corrigida de “Aplicação ilustrativa” para “Simulação visual”.
 - O schema passou a exigir disclosure para simulação, mockup e IA, compatibilidade para mockup/IA e revisão de confidencialidade antes da publicação.
 - A seção final dos cases foi renomeada para “Estado atual”, sem atribuir a simulação da capa a um resultado inexistente.
@@ -73,7 +69,7 @@ Esses itens não bloqueiam o protótipo porque todos os estados pendentes e demo
 
 - **Destaques repetidos na biblioteca:** os projetos continuam disponíveis nos dois contextos para preservar curadoria e filtragem completa. A repetição foi reduzida criando cards editoriais próprios para destaques e cards de arquivo para a biblioteca.
 - **Seção de marcas vazia:** foi preservada para documentar o espaço planejado e o contexto empresarial, mas compactada e removida da navegação principal até existirem logos autorizados.
-- **Placeholder do logo:** foi mantido como diagrama neutro explicitamente pendente. Ele não deve evoluir para marca provisória; será substituído apenas pelos SVGs oficiais.
+- **Assets de capa e apoio:** permanecem como slots explicitamente pendentes e serão substituídos apenas pelos arquivos originais das imagens 1 e 3.
 - **Cases demonstrativos no SEO:** permanecem com `noindex,follow` e fora do sitemap. Torná-los indexáveis só será considerado após conteúdo real e revisão de integridade.
 - **Contato pendente:** não foram criados links falsos. A ausência é preferível a inventar destinos, embora bloqueie a conversão do portfólio final.
 
@@ -82,7 +78,7 @@ Esses itens não bloqueiam o protótipo porque todos os estados pendentes e demo
 - `npm run typecheck`: aprovado, 40 arquivos, 0 erros, 0 warnings e 0 hints;
 - `npm run build`: aprovado, 7 páginas estáticas;
 - `npm run test:dist`: aprovado;
-- Playwright: 26 testes aprovados após as correções finais;
+- Playwright: 27 testes aprovados após as correções finais;
 - breakpoints: 320, 360, 390, 768, 1024 e 1440 px;
 - cenários: teclado, skip link, menu, filtros, History API, ausência de JavaScript, redução de movimento, links, assets, 404 e foco não obscurecido;
 - base path: `/portfolio-vinicius/`;

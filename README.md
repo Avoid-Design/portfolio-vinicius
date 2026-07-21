@@ -4,6 +4,8 @@ Protótipo funcional do portfólio profissional de Vinicius Rafael — Designer 
 
 O projeto usa Astro, TypeScript estrito, HTML semântico, CSS próprio e JavaScript progressivo. A versão atual contém cinco cases demonstrativos claramente identificados; eles não representam clientes, marcas ou produções reais.
 
+A home atual está organizada em quatro blocos contínuos — Início; Sobre e experiência; Projetos; Contato — com menu superior recolhido. O logo principal oficial já está aplicado sem alteração. As exportações originais da capa (imagem 1) e do apoio de seções (imagem 3) permanecem pendentes e têm slots identificados no protótipo.
+
 ## Executar localmente
 
 Requisito: Node.js 24.
@@ -68,17 +70,12 @@ Referências oficiais: [Subagents](https://learn.chatgpt.com/docs/agent-configur
 
 ## Agentes especializados
 
-- `digital-design-director`: identidade, hierarquia, tipografia e coerência visual.
-- `ux-information-architect`: jornada, navegação e arquitetura de informação.
-- `frontend-astro-engineer`: implementação Astro, TypeScript, CSS, rotas e build.
-- `technical-fashion-designer`: fidelidade técnica de modelos, bordado, DTF, silk e sublimação.
-- `accessibility-responsive-reviewer`: WCAG, teclado, movimento e breakpoints.
-- `performance-seo-reviewer`: GitHub Pages, desempenho, metadados e descoberta.
-- `hiring-reviewer`: leitura como recrutador e contratante leigo.
+- `ux-ui-portfolio-designer`: UX/UI de portfólios fluidos, direção visual, jornada de contratação, responsividade e acessibilidade.
+- `frontend-portfolio-engineer`: implementação Astro, qualidade de código, testes, desempenho, SEO e GitHub Pages.
 
-Solicitar subagentes diretamente no prompt e indicar se o trabalho deve ser paralelo, somente leitura e aguardado antes da síntese. Exemplo:
+Solicitar subagentes diretamente no prompt. Usar somente a especialidade necessária; em tarefas grandes, UX/UI analisa primeiro e Frontend implementa depois. Exemplo:
 
-> Delegue em paralelo a análise desta seção para `digital-design-director`, `ux-information-architect` e `hiring-reviewer`. Aguarde todos e entregue uma síntese.
+> Peça ao `ux-ui-portfolio-designer` uma análise somente leitura desta seção. Depois, use `frontend-portfolio-engineer` para implementar as recomendações aprovadas.
 
 ## Repository skills
 

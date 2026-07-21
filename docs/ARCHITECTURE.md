@@ -20,7 +20,7 @@ As decisões preservam `AGENTS.md`, `docs/REFERENCE_ANALYSIS.md`, `docs/INITIAL_
 - GitHub Pages em `https://avoid-design.github.io/portfolio-vinicius/` com base `/portfolio-vinicius/`.
 - Melhoria progressiva: menu, filtros e animação não podem retirar conteúdo quando JavaScript falhar.
 - Base visual neutra e contrastante, explicitamente provisória; nenhuma paleta final é aprovada nesta versão.
-- Logos originais não serão redesenhados. Como os SVGs oficiais ainda não existem, haverá um slot animável com placeholder geométrico neutro e aviso de asset pendente.
+- Logos originais não serão redesenhados. O logo principal oficial recebido está preservado como PNG transparente; a capa e o apoio mantêm slots estáticos e explicitamente pendentes até a entrega dos respectivos arquivos originais.
 
 ## Dependências mínimas
 
@@ -49,7 +49,6 @@ Não haverá linter apenas nominal. A ausência de lint será registrada até qu
 ├── tsconfig.json
 ├── public/
 │   ├── assets/
-│   │   ├── favicon.svg
 │   │   ├── logos/
 │   │   ├── brands/
 │   │   ├── curriculum/
@@ -173,7 +172,9 @@ Todos usam `clientLabel: "Projeto demonstrativo"`, `publicBrand: false`, ano “
 - `SeoHead`: title, description, canonical, Open Graph, Twitter Card, robots e JSON-LD.
 - `SiteHeader`: menu discreto e indicação progressiva da seção ativa.
 - `Opening`: composição assimétrica e conteúdo imediatamente disponível.
-- `LogoConstructionIntro`: camadas de apresentação; nunca controla a disponibilidade da página.
+- `BrandAsset`: seleciona o asset oficial configurado ou apresenta um estado pendente honesto.
+- `AboutExperience`: reúne perfil e experiência no mesmo bloco principal.
+- `ProjectsSection`: reúne destaques, biblioteca e contexto profissional no mesmo bloco principal.
 - `ProfessionalFile`: Sobre, perfil, programas, habilidades e canais.
 - `ProgramList` e `SkillTags`: coleções compactas e textuais.
 - `FeaturedProjects`: subconjunto derivado de `featured`.
@@ -199,8 +200,8 @@ Todos usam `clientLabel: "Projeto demonstrativo"`, `publicBrand: false`, ano “
 
 ### Menu
 
-- Links básicos visíveis sem JavaScript.
-- No mobile, um `<button>` real recebe `aria-expanded` e `aria-controls` após a melhoria ser inicializada.
+- Um `<details>` nativo mantém o menu recolhido e operável com ou sem JavaScript.
+- O `<summary>` nomeia o controle e informa seu estado pelo comportamento nativo.
 - Enter, Espaço e Escape funcionam; Escape devolve foco ao acionador.
 - Sem armadilha de foco em menu não modal.
 - Seção ativa usa `aria-current="location"` e indicador não dependente de cor.
@@ -233,15 +234,9 @@ Todos usam `clientLabel: "Projeto demonstrativo"`, `publicBrand: false`, ano “
 
 ## Movimento e logo
 
-O HTML/CSS base mostra logo/placeholder final e textos. JavaScript só adiciona uma classe de animação quando:
+O HTML/CSS base mostra imediatamente o logo oficial, o conteúdo e os estados pendentes. Não há introdução animada, overlay, loading, captura de foco ou bloqueio de rolagem. A rolagem suave é um refinamento e volta ao comportamento imediato com `prefers-reduced-motion: reduce`.
 
-- movimento reduzido não foi solicitado;
-- a chave de sessão ainda não existe;
-- `sessionStorage` está acessível em `try/catch`.
-
-A sessão é marcada antes do início. A sequência total dura de 1,2 a 1,8 segundo: construção, contorno, trama, estado final e textos. Não há overlay, loading, captura de foco ou bloqueio de rolagem. Com `prefers-reduced-motion: reduce`, o estado final aparece imediatamente.
-
-Os paths dos SVGs oficiais nunca serão alterados. Até os arquivos chegarem, as camadas usam geometria neutra explicitamente marcada como placeholder, sem tentar reconstruir o símbolo da imagem de referência.
+O arquivo oficial do logo principal nunca será alterado. A imagem 1 de capa e a imagem 3 de apoio serão inseridas apenas quando suas exportações originais forem fornecidas; até lá, o site não tenta reconstruí-las.
 
 ## Sistema visual e responsividade
 
@@ -266,7 +261,7 @@ CSS mobile first. Validar 320, 360, 390, 768, 1024 e 1440 px, zoom de 200%, aume
 - 404 usa `noindex,follow`, fica fora do sitemap e retorna ao site por URL base-aware.
 - Demonstrativos usam `noindex,follow` e ficam fora do sitemap.
 - `robots.txt` aponta ao sitemap, com a limitação documentada de que o arquivo sob subcaminho não governa toda a origem `avoid-design.github.io`.
-- Logos em SVG original; raster em AVIF/WebP com dimensões reservadas, `srcset`/`sizes` e lazy loading abaixo da dobra.
+- Logos no formato original fornecido; fotografias e imagens de projeto em AVIF/WebP com dimensões reservadas, `srcset`/`sizes` e lazy loading abaixo da dobra.
 - LCP não usa lazy loading.
 - Sem fonte remota, vídeo automático, runtime de framework ou asset remoto desnecessário.
 

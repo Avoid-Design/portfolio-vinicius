@@ -10,27 +10,37 @@ test('skip link é o primeiro foco e aponta ao main', async ({ page }) => {
   await expect(page.locator('main#conteudo-principal')).toBeFocused();
 });
 
-test('menu móvel opera por teclado e Escape devolve foco', async ({ page }) => {
+test('menu recolhido opera por teclado e Escape devolve foco', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('./');
-  const menu = page.getByRole('button', { name: 'Menu' });
-  await menu.focus();
+  const menu = page.locator('[data-site-menu]');
+  const summary = page.locator('[data-menu-summary]');
+  await expect(menu).not.toHaveAttribute('open', '');
+  await summary.focus();
   await page.keyboard.press('Enter');
-  await expect(menu).toHaveAttribute('aria-expanded', 'true');
+  await expect(menu).toHaveAttribute('open', '');
   await expect(page.getByRole('link', { name: 'Projetos', exact: true })).toBeVisible();
   await page.keyboard.press('Escape');
-  await expect(menu).toHaveAttribute('aria-expanded', 'false');
-  await expect(menu).toBeFocused();
+  await expect(menu).not.toHaveAttribute('open', '');
+  await expect(summary).toBeFocused();
 });
 
-test('menu móvel aberto não oculta o próximo foco', async ({ page }) => {
+for (const width of [390, 1440]) {
+  test(`menu inicia recolhido em ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto('./');
+    await expect(page.locator('[data-site-menu]')).not.toHaveAttribute('open', '');
+  });
+}
+
+test('menu aberto não oculta o próximo foco', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 800 });
   await page.goto('./');
-  const menu = page.getByRole('button', { name: 'Menu' });
+  const menu = page.locator('[data-menu-summary]');
   await menu.focus();
   await page.keyboard.press('Enter');
 
-  for (let index = 0; index < 7; index += 1) await page.keyboard.press('Tab');
+  for (let index = 0; index < 5; index += 1) await page.keyboard.press('Tab');
 
   const focusGeometry = await page.evaluate(() => {
     const active = document.activeElement?.getBoundingClientRect();
@@ -50,7 +60,11 @@ test('navegação sem JavaScript não encobre o foco em viewport baixa', async (
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/portfolio-vinicius/');
 
-  for (let index = 0; index < 9; index += 1) await page.keyboard.press('Tab');
+  const summary = page.locator('[data-menu-summary]');
+  await summary.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('[data-site-menu]')).toHaveAttribute('open', '');
+  for (let index = 0; index < 5; index += 1) await page.keyboard.press('Tab');
 
   const focusGeometry = await page.evaluate(() => {
     const active = document.activeElement?.getBoundingClientRect();
@@ -71,6 +85,7 @@ test('sem JavaScript a navegação e os cinco projetos permanecem disponíveis',
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/portfolio-vinicius/');
 
+  await page.locator('[data-menu-summary]').click();
   await expect(page.getByRole('link', { name: 'Projetos', exact: true })).toBeVisible();
   await expect(page.locator('[data-filter-controls]')).toBeHidden();
   await expect(page.locator('[data-project-list] > li')).toHaveCount(5);
@@ -78,17 +93,9 @@ test('sem JavaScript a navegação e os cinco projetos permanecem disponíveis',
   await context.close();
 });
 
-test('redução de movimento evita ativar a introdução', async ({ page }) => {
+test('redução de movimento mantém abertura visível e desativa rolagem suave', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('./');
-  await expect(page.locator('html')).not.toHaveAttribute('data-logo-intro', 'play');
   await expect(page.locator('[data-opening-copy]')).toBeVisible();
-});
-
-test('introdução executa no máximo uma vez por sessão', async ({ page }) => {
-  await page.goto('./');
-  await expect(page.locator('html')).toHaveAttribute('data-logo-intro', 'play');
-  await page.reload();
-  await expect(page.locator('html')).not.toHaveAttribute('data-logo-intro', 'play');
-  await expect(page.locator('[data-opening-copy]')).toBeVisible();
+  await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
 });

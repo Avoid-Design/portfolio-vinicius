@@ -1,0 +1,23 @@
+---
+import { brandAssets } from '../config/brand';
+import BrandAsset from './BrandAsset.astro';
+import ExperienceSection from './ExperienceSection.astro';
+import ProfessionalFile from './ProfessionalFile.astro';
+---
+
+<section id="sobre" class="about-experience section-anchor" aria-labelledby="about-experience-title" data-home-block>
+  <div class="section-heading section-heading--with-mark">
+    <div>
+      <p class="eyebrow">Perfil profissional / 02</p>
+      <h2 id="about-experience-title">Sobre e experiência</h2>
+    </div>
+    <BrandAsset
+      asset={brandAssets.support}
+      class="support-logo-slot"
+      decorative
+      pendingText="Logo de apoio pendente"
+    />
+  </div>
+  <ProfessionalFile />
+  <ExperienceSection />
+</section>

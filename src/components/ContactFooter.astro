@@ -1,10 +1,22 @@
 ---
 import { contacts, site } from '../config/site';
+import { brandAssets } from '../config/brand';
+
+interface Props {
+  homeBlock?: boolean;
+}
+
+const { homeBlock = false } = Astro.props;
 ---
 
-<footer id="contato" class="contact-footer section-anchor" aria-labelledby="contact-title">
+<footer
+  id="contato"
+  class="contact-footer section-anchor"
+  aria-labelledby="contact-title"
+  data-home-block={homeBlock ? '' : undefined}
+>
   <div>
-    <p class="eyebrow">Contato / 06</p>
+    <p class="eyebrow">Contato / 04</p>
     <h2 id="contact-title">Vamos transformar informação em produção.</h2>
     <p>{site.availability}</p>
   </div>
@@ -20,5 +32,8 @@ import { contacts, site } from '../config/site';
       </li>
     ))}
   </ul>
-  <p class="footer-note">Portfólio em protótipo · Base visual neutra e provisória.</p>
+  <div class="footer-signature">
+    <img src={brandAssets.primary.src} alt="" width="2247" height="2067" loading="lazy" decoding="async" />
+    <p class="footer-note">Vinicius Rafael · Portfólio em protótipo · Base visual neutra e provisória.</p>
+  </div>
 </footer>

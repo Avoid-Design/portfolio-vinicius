@@ -18,8 +18,15 @@ Todas as mudanças relevantes deste projeto serão registradas aqui.
 - Revisão multidisciplinar com hierarquia, ordem da jornada e estado de marcas refinados.
 - Validações de disclosure e confidencialidade reforçadas no schema.
 - Regressões de foco não obscurecido em menu móvel com e sem JavaScript.
+- Home reorganizada em quatro blocos contínuos: Início; Sobre e experiência; Projetos; Contato.
+- Logo principal oficial aplicado sem alteração na identidade, no menu, no favicon e no rodapé.
+- Menu superior recolhido com melhoria progressiva baseada em `details`/`summary`.
+- Tipografia de títulos revista para uma presença menos espessa.
+- Slots explícitos para os arquivos originais ainda pendentes da capa e do logo de apoio.
+- Equipe virtual consolidada em dois agentes: UX/UI Portfolio Designer e Frontend Portfolio Engineer.
+- Skills reorganizadas para delegação seletiva e menor consumo de contexto.
 
 ### Notes
 
 - A paleta permanece neutra e provisória.
-- Logos, marcas, contatos, currículo e projetos reais ainda não foram fornecidos.
+- A imagem 1 de capa, a imagem 3 de apoio, marcas, contatos, currículo e projetos reais ainda não foram fornecidos como assets publicáveis.

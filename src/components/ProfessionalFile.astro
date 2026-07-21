@@ -1,13 +1,13 @@
 ---
-import { contacts, site } from '../config/site';
+import { site } from '../config/site';
 import ProgramList from './ProgramList.astro';
 import SkillTags from './SkillTags.astro';
 ---
 
-<section id="sobre" class="professional-file section-anchor" aria-labelledby="about-title">
-  <div class="section-heading">
-    <p class="eyebrow">Ficha profissional / 02</p>
-    <h2 id="about-title">Sobre mim</h2>
+<section class="professional-file" aria-labelledby="about-title">
+  <div class="subsection-heading">
+    <p class="eyebrow">Ficha profissional</p>
+    <h3 id="about-title">Sobre mim</h3>
   </div>
 
   <div class="professional-grid">
@@ -20,18 +20,6 @@ import SkillTags from './SkillTags.astro';
         <div><dt>Formação</dt><dd>{site.education}</dd></div>
         <div><dt>Disponibilidade</dt><dd>{site.availability}</dd></div>
       </dl>
-      <ul class="compact-contacts" aria-label="Canais profissionais">
-        {contacts.map((contact) => (
-          <li>
-            <span>{contact.label}</span>
-            {contact.status === 'configured' && contact.href ? (
-              <a href={contact.href}>{contact.value}</a>
-            ) : (
-              <strong>{contact.value}</strong>
-            )}
-          </li>
-        ))}
-      </ul>
     </div>
     <div class="profile-capabilities">
       <ProgramList />

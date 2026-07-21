@@ -1,0 +1,34 @@
+---
+import type { ProjectEntry } from '../utils/projects';
+import { brandAssets } from '../config/brand';
+import BrandAsset from './BrandAsset.astro';
+import BrandContext from './BrandContext.astro';
+import FeaturedProjects from './FeaturedProjects.astro';
+import ProjectFilters from './ProjectFilters.astro';
+
+interface Props {
+  featured: ProjectEntry[];
+  projects: ProjectEntry[];
+}
+
+const { featured, projects } = Astro.props;
+---
+
+<section id="projetos" class="projects-section section-anchor" aria-labelledby="projects-title" data-home-block>
+  <div class="section-heading section-heading--display section-heading--with-mark">
+    <div>
+      <p class="eyebrow">Arquivo de projetos / 03</p>
+      <h2 id="projects-title">Projetos</h2>
+      <p>Cases técnicos organizados por processo, participação e tipo de evidência.</p>
+    </div>
+    <BrandAsset
+      asset={brandAssets.support}
+      class="support-logo-slot"
+      decorative
+      pendingText="Logo de apoio pendente"
+    />
+  </div>
+  <FeaturedProjects projects={featured} />
+  <ProjectFilters projects={projects} />
+  <BrandContext />
+</section>

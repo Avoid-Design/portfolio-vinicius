@@ -1,11 +1,8 @@
 ---
-import BrandContext from '../components/BrandContext.astro';
+import AboutExperience from '../components/AboutExperience.astro';
 import ContactFooter from '../components/ContactFooter.astro';
-import ExperienceSection from '../components/ExperienceSection.astro';
-import FeaturedProjects from '../components/FeaturedProjects.astro';
 import Opening from '../components/Opening.astro';
-import ProfessionalFile from '../components/ProfessionalFile.astro';
-import ProjectFilters from '../components/ProjectFilters.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
 import { PUBLIC_SITE_URL, contacts, site } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getPublishedProjects } from '../utils/projects';
@@ -35,11 +32,8 @@ const personJsonLd = {
 <BaseLayout canonicalPath="" jsonLd={personJsonLd}>
   <main id="conteudo-principal" tabindex="-1">
     <Opening />
-    <FeaturedProjects projects={featured} />
-    <ProfessionalFile />
-    <ExperienceSection />
-    <ProjectFilters projects={projects} />
-    <BrandContext />
+    <AboutExperience />
+    <ProjectsSection featured={featured} projects={projects} />
   </main>
-  <ContactFooter />
+  <ContactFooter homeBlock />
 </BaseLayout>

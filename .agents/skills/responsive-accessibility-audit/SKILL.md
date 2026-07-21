@@ -11,8 +11,8 @@ description: "Auditoria responsiva e de acessibilidade ao concluir seção, pág
 4. Revisar navegação por teclado, ordem e visibilidade do foco.
 5. Verificar `prefers-reduced-motion` e operação sem animação ou hover.
 6. Avaliar 360, 390, 768, 1024 e 1440 px, incluindo overflow, títulos, menus, filtros e touch targets.
-7. Acionar o agente `accessibility-responsive-reviewer` para uma revisão independente.
-8. Corrigir falhas críticas somente quando a tarefa autorizar alterações; caso contrário, entregar correções propostas.
+7. Acionar `ux-ui-portfolio-designer` para revisão independente somente quando o risco ou o escopo justificar delegação.
+8. Corrigir falhas críticas com `frontend-portfolio-engineer` somente quando a tarefa autorizar alterações; caso contrário, entregar correções propostas.
 9. Reexecutar verificações afetadas e documentar pendências, critérios WCAG e limites do método.
 
 Priorizar bloqueios de acesso sobre refinamentos visuais. Citar arquivo, linha, componente, breakpoint e evidência quando possível.

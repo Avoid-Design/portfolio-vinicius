@@ -3,4 +3,6 @@ dist/
 .astro/
 playwright-report/
 test-results/
+debug.log
 .DS_Store
+ESTRUTUTRA COREL/

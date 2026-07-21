@@ -34,7 +34,7 @@ Construir um portfólio técnico, autoral, sério e levemente disruptivo para Vi
 - Usar Astro, TypeScript estrito, HTML semântico, CSS próprio e JavaScript mínimo.
 - Preferir componentes reutilizáveis e conteúdo centralizado.
 - Preparar a publicação para GitHub Pages.
-- Usar SVG para logos e WebP ou AVIF para imagens.
+- Preservar o formato original fornecido para logos, preferindo SVG quando existir; usar WebP ou AVIF para imagens de projeto.
 - Respeitar `prefers-reduced-motion`.
 - Não adicionar dependências sem necessidade nem criar abstrações prematuras.
 - Executar os scripts existentes de typecheck, lint, testes e build aplicáveis; o build é obrigatório antes de concluir mudanças de código. Se um script ainda não existir, registrar a ausência em vez de inventar uma validação.
@@ -42,13 +42,18 @@ Construir um portfólio técnico, autoral, sério e levemente disruptivo para Vi
 
 ## Uso de subagentes
 
-Para tarefas complexas, solicitar subagentes explicitamente, sobretudo em auditoria visual, UX, fashion design técnico, acessibilidade, testes, performance e revisão de contratação. Evitar subagentes quando a tarefa for pequena, sequencial ou compartilhar o mesmo conjunto de arquivos.
+Usar no máximo dois subagentes especializados e somente quando o custo de coordenação for justificado:
+
+- `ux-ui-portfolio-designer`: UX, UI, direção visual, jornada de contratação, responsividade e acessibilidade percebida.
+- `frontend-portfolio-engineer`: Astro, implementação, testes, desempenho, SEO e GitHub Pages.
+
+Evitar subagentes quando a tarefa for pequena, sequencial ou compartilhar o mesmo conjunto de arquivos. Conhecimento têxtil e fluxos específicos permanecem nas repository skills, sem criar um agente adicional.
 
 O agente principal deve:
 
 1. Planejar.
-2. Delegar análises independentes.
-3. Aguardar todos.
+2. Delegar somente a especialidade necessária.
+3. Aguardar o resultado quando houver delegação.
 4. Sintetizar os resultados.
 5. Priorizar conflitos.
 6. Implementar ou coordenar alterações.
@@ -60,8 +65,8 @@ Evitar múltiplos subagentes escrevendo simultaneamente nos mesmos arquivos.
 
 Para tarefas que alterem arquitetura, identidade, múltiplas seções ou release, use subagentes em duas fases.
 
-- Fase 1 — análise paralela: Design, UX, Fashion, Acessibilidade e Contratação.
-- Fase 2 — implementação e validação: Front-end implementa; Acessibilidade e Performance validam; o agente principal integra e executa testes.
+- Fase 1 — direção: `ux-ui-portfolio-designer` analisa em modo somente leitura e entrega critérios verificáveis.
+- Fase 2 — implementação: `frontend-portfolio-engineer` implementa o conjunto aprovado e executa validações; o agente principal integra e decide.
 
 ## Critérios de decisão
 

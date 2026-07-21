@@ -1,75 +1,51 @@
 ---
-import { contacts, navigation } from '../config/site';
+import { brandAssets } from '../config/brand';
+import { navigation } from '../config/site';
 import { homeAnchor } from '../utils/urls';
-
-const curriculum = contacts.find(({ label }) => label === 'Currículo');
 ---
 
 <header class="site-header" data-site-header>
   <a class="site-signature" href={homeAnchor('inicio')} aria-label="Vinicius Rafael, início">
-    <span aria-hidden="true">VR/</span>
+    <img src={brandAssets.primary.src} alt="" width="2247" height="2067" />
     <span>Vinicius Rafael</span>
   </a>
 
-  <nav class="site-nav" aria-label="Navegação principal" data-site-nav>
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="navigation-list"
-      hidden
-      data-menu-toggle
-    >
-      Menu
-    </button>
-    <ul id="navigation-list" class="nav-list" data-navigation-list>
-      {navigation.map(({ label, id }) => (
-        <li><a href={homeAnchor(id)} data-section-link={id}>{label}</a></li>
-      ))}
-      <li>
-        {curriculum?.status === 'configured' && curriculum.href ? (
-          <a href={curriculum.href}>Currículo</a>
-        ) : (
-          <span class="nav-pending">Currículo <small>pendente</small></span>
-        )}
-      </li>
-    </ul>
-  </nav>
+  <details class="site-menu" data-site-menu>
+    <summary data-menu-summary>
+      <img src={brandAssets.primary.src} alt="" width="2247" height="2067" />
+      <span>Menu</span>
+    </summary>
+    <nav aria-label="Navegação principal">
+      <ul class="nav-list">
+        {navigation.map(({ label, id }) => (
+          <li><a href={homeAnchor(id)} data-section-link={id}>{label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </details>
 </header>
 
 <script>
-  const navigationRoot = document.querySelector<HTMLElement>('[data-site-nav]');
-  const toggle = navigationRoot?.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-  const list = navigationRoot?.querySelector<HTMLUListElement>('[data-navigation-list]');
-  const mobile = window.matchMedia('(max-width: 47.99rem)');
+  const menu = document.querySelector<HTMLDetailsElement>('[data-site-menu]');
+  const summary = menu?.querySelector<HTMLElement>('[data-menu-summary]');
 
-  if (navigationRoot && toggle && list) {
-    const setOpen = (open: boolean) => {
-      toggle.setAttribute('aria-expanded', String(open));
-      list.hidden = mobile.matches ? !open : false;
-    };
-
-    const syncViewport = () => {
-      toggle.hidden = !mobile.matches;
-      setOpen(!mobile.matches);
-    };
-
-    navigationRoot.classList.add('is-enhanced');
-    syncViewport();
-    mobile.addEventListener('change', syncViewport);
-
-    toggle.addEventListener('click', () => {
-      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  if (menu && summary) {
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.open = false;
+      });
     });
 
-    list.addEventListener('click', (event) => {
-      if (mobile.matches && (event.target as Element).closest('a')) setOpen(false);
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        summary.focus();
+      }
     });
 
-    navigationRoot.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && mobile.matches && toggle.getAttribute('aria-expanded') === 'true') {
-        setOpen(false);
-        toggle.focus();
+    document.addEventListener('pointerdown', (event) => {
+      if (menu.open && event.target instanceof Node && !menu.contains(event.target)) {
+        menu.open = false;
       }
     });
   }
@@ -80,19 +56,16 @@ const curriculum = contacts.find(({ label }) => label === 'Currículo');
     .filter((section): section is HTMLElement => Boolean(section));
 
   if ('IntersectionObserver' in window && sections.length > 0) {
-    const setCurrent = (id: string) => {
-      for (const link of links) {
-        if (link.dataset.sectionLink === id) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      }
-    };
-
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
-        if (visible?.target.id) setCurrent(visible.target.id);
+
+        for (const link of links) {
+          if (link.dataset.sectionLink === visible?.target.id) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        }
       },
       { rootMargin: '-20% 0px -65% 0px', threshold: [0, 0.2, 0.5] },
     );

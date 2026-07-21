@@ -72,9 +72,9 @@ Exemplo:
 
 ## Logos
 
-Coloque os SVGs oficiais, sem redesenho ou otimização destrutiva, em `public/assets/logos/`. Documente qual variação serve para abertura, navegação, ficha e contato.
+O logo principal oficial (imagem 2) está preservado sem alteração em `public/assets/logos/logo-principal-preto.png`. Ele é a assinatura central do site e também atende navegação, favicon e contato.
 
-Não extraia uma nova marca da imagem de referência. O placeholder atual deve ser removido somente quando os arquivos oficiais forem recebidos e aprovados.
+Os arquivos originais da imagem 1 (capa) e da imagem 3 (apoio de seções e abas) ainda estão pendentes. Quando forem fornecidos, coloque-os em `public/assets/logos/` e atualize somente `src/config/brand.ts`; não redesenhe, vetorize automaticamente, recorte prévias nem altere proporções.
 
 ## Marcas
 
