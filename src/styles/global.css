@@ -307,24 +307,14 @@ main > section,
 }
 
 .cover-slot {
+  display: flex;
+  align-items: center;
   min-width: 0;
   margin: 0;
 }
 
-.cover-slot figcaption {
-  margin-block-start: var(--space-2);
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-}
-
 .opening-copy {
-  max-width: 42rem;
-}
-
-.opening-brand-mark {
-  width: clamp(3.5rem, 7vw, 5.25rem);
-  margin-block-end: var(--space-4);
+  max-width: none;
 }
 
 .cover-asset {
@@ -363,26 +353,31 @@ main > section,
   font-size: 0.72rem;
 }
 
-.opening h1 {
-  margin-block-end: var(--space-3);
-  font-family: var(--font-display);
-  font-size: var(--step-4);
-  font-weight: 500;
-  letter-spacing: -0.045em;
+.opening .eyebrow {
+  margin-block-end: var(--space-2);
+  color: var(--color-text);
+  font-size: clamp(1.75rem, 2.2vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 1;
+  text-transform: none;
 }
 
-.opening-role {
-  max-width: 35ch;
-  margin-block-end: var(--space-3);
-  font-family: var(--font-mono);
-  font-size: var(--step-1);
+.opening h1 {
+  margin-block-end: var(--space-4);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 4.2vw, 4.4rem);
   font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
 }
 
 .opening-statement {
-  max-width: 38ch;
+  max-width: none;
   color: var(--color-muted);
-  font-size: var(--step-1);
+  font-size: clamp(0.7rem, 3.65vw, 1.35rem);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .opening-actions {
@@ -1154,20 +1149,6 @@ main > section,
     width: min(100% - 3rem, var(--content-width));
   }
 
-  .opening {
-    grid-template-columns: minmax(0, 1.62fr) minmax(18rem, 1fr);
-  }
-
-  .opening-copy {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .cover-slot {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
   .professional-grid {
     grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
   }
@@ -1222,6 +1203,25 @@ main > section,
 }
 
 @media (min-width: 64rem) {
+  .opening {
+    grid-template-columns: minmax(0, 1.08fr) minmax(31rem, 0.92fr);
+    column-gap: clamp(3rem, 6vw, 7rem);
+  }
+
+  .opening-copy {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cover-slot {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .opening-statement {
+    font-size: clamp(1rem, 1.25vw, 1.35rem);
+  }
+
   .project-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1261,10 +1261,6 @@ main > section,
 }
 
 @media (max-width: 47.99rem) {
-  .opening-brand-mark {
-    display: none;
-  }
-
   .section-heading--with-mark {
     align-items: stretch;
     flex-direction: column;

@@ -28,6 +28,32 @@ test('home possui estrutura semântica e conteúdo central', async ({ page }) =>
   await expect(page.locator('[data-project-list] > li')).toHaveCount(5);
 });
 
+test('abertura usa a capa original e mantém a frase em uma linha', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('./');
+
+  await expect(page.locator('.cover-asset')).toHaveAttribute('src', /assets\/logos\/logo-capa\.png$/);
+  await expect(page.locator('.cover-slot [data-asset-status="pending"]')).toHaveCount(0);
+
+  for (const width of [320, 390, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    const statement = page.locator('.opening-statement');
+    await expect(statement).toHaveCSS('white-space', 'nowrap');
+
+    const lineMetrics = await statement.evaluate((element) => {
+      const styles = getComputedStyle(element);
+      return {
+        height: element.getBoundingClientRect().height,
+        lineHeight: Number.parseFloat(styles.lineHeight),
+        fitsWidth: element.scrollWidth <= element.clientWidth,
+      };
+    });
+
+    expect(lineMetrics.height).toBeLessThanOrEqual(lineMetrics.lineHeight * 1.1);
+    expect(lineMetrics.fitsWidth).toBeTruthy();
+  }
+});
+
 for (const slug of slugs) {
   test(`case ${slug} possui rota, aviso e noindex`, async ({ page }) => {
     await page.goto(`projetos/${slug}/`);

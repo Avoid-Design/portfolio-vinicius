@@ -18,8 +18,10 @@ export const brandAssets = {
   },
   cover: {
     label: 'Capa do portfólio',
-    status: 'pending',
+    status: 'configured',
     src: withBase('assets/logos/logo-capa.png'),
+    width: 807,
+    height: 743,
   },
   support: {
     label: 'Logo de apoio',

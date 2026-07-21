@@ -7,10 +7,8 @@ import BrandAsset from './BrandAsset.astro';
 
 <section id="inicio" class="opening section-anchor" aria-labelledby="opening-title" data-home-block>
   <div class="opening-copy" data-opening-copy>
-    <BrandAsset asset={brandAssets.primary} class="opening-brand-mark" decorative />
-    <p class="eyebrow">{site.portfolioLabel} técnico</p>
+    <p class="eyebrow">{site.portfolioLabel} Técnico</p>
     <h1 id="opening-title">{site.name}</h1>
-    <p class="opening-role">{site.role}</p>
     <p class="opening-statement">{site.statement}</p>
     <div class="opening-actions">
       <a class="button-link" href={homeAnchor('projetos')}>Ver projetos</a>
@@ -21,8 +19,6 @@ import BrandAsset from './BrandAsset.astro';
     <BrandAsset
       asset={brandAssets.cover}
       class="cover-asset"
-      pendingText="Exportação da imagem 1 pendente"
     />
-    <figcaption>Capa principal · arquivo original será inserido sem recorte.</figcaption>
   </figure>
 </section>
