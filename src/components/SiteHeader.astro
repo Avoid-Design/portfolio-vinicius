@@ -5,15 +5,9 @@ import { homeAnchor } from '../utils/urls';
 ---
 
 <header class="site-header" data-site-header>
-  <a class="site-signature" href={homeAnchor('inicio')} aria-label="Vinicius Rafael, início">
-    <img src={brandAssets.primary.src} alt="" width="2247" height="2067" />
-    <span>Vinicius Rafael</span>
-  </a>
-
   <details class="site-menu" data-site-menu>
-    <summary data-menu-summary>
+    <summary data-menu-summary aria-label="Abrir navegação principal">
       <img src={brandAssets.primary.src} alt="" width="2247" height="2067" />
-      <span>Menu</span>
     </summary>
     <nav aria-label="Navegação principal">
       <ul class="nav-list">
